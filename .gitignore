@@ -25,6 +25,7 @@ private/
 *.backup
 *~
 .cache/
+.tools/
 tmp/
 
 # Research data and unpublished working material
