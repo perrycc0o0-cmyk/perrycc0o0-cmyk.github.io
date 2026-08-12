@@ -1,0 +1,253 @@
+menu:
+  Home: / || anzhiyu-icon-house
+  Articles: /archives/ || anzhiyu-icon-book
+  Topics: /research/ || anzhiyu-icon-compass
+  Archive: /archives/ || anzhiyu-icon-box-archive
+  Categories: /categories/ || anzhiyu-icon-folder-open
+  Tags: /tags/ || anzhiyu-icon-tags
+  About: /about/ || anzhiyu-icon-circle-info
+
+nav:
+  enable: true
+  travelling: false
+  clock: false
+  menu: true
+
+highlight_theme: mac
+highlight_copy: true
+highlight_lang: true
+highlight_shrink: false
+
+avatar:
+  img: /img/perry-cover.png
+  effect: false
+
+disable_top_img: false
+index_img: false
+default_top_img: false
+archive_img: false
+tag_img: false
+category_img: false
+footer_img: false
+
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  position: left
+  default_cover:
+    - /img/perry-cover.png
+
+index_post_content:
+  method: 3
+  length: 180
+
+copy:
+  enable: true
+  copyright:
+    enable: true
+    limit_count: 120
+
+post_copyright:
+  enable: false
+  decode: false
+  author_href: /about/
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+toc:
+  post: true
+  page: false
+  number: true
+  expand: false
+  style_simple: false
+  scroll_percent: true
+
+post_edit: false
+noticeOutdate:
+  enable: true
+  style: flat
+  limit_day: 365
+  position: top
+  message_prev: 本文距离上次更新已经
+  message_next: 天，部分内容可能已发生变化。
+
+footer:
+  owner:
+    enable: true
+    since: 2026
+  custom_text: <div class="perry-footer-brand">PERRY'S GALAXY<small>Biology · Computation · Curiosity</small></div><div class="perry-footer-links"><a href="/atom.xml">RSS</a><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a><a href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" target="_blank" rel="noopener">AnZhiYu</a></div>
+  runtime:
+    enable: false
+  footerBar:
+    enable: false
+
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  display:
+    archive: true
+    tag: true
+    category: true
+  card_author:
+    enable: true
+    description: 生命科学、计算、AI 与持续探索。
+    button:
+      enable: false
+  card_announcement:
+    enable: true
+    content: 在生命、计算与未知之间持续探索。
+  card_weixin:
+    enable: false
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date
+  card_categories:
+    enable: true
+    limit: 8
+    expand: none
+    sort_order: 1
+  card_tags:
+    enable: true
+    limit: 20
+    color: false
+    orderby: random
+    order: 1
+    sort_order: 2
+  card_archives:
+    enable: true
+    type: monthly
+    format: MMMM YYYY
+    order: -1
+    limit: 8
+    sort_order: 3
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
+    sort_order: 4
+
+rightside_item_order:
+  enable: false
+readmode: true
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: 1
+
+local_search:
+  enable: true
+  preload: false
+  CDN:
+
+mathjax:
+  enable: false
+katex:
+  enable: false
+
+wordcount:
+  enable: true
+  post_wordcount: true
+  min2read: true
+  total_wordcount: true
+
+busuanzi:
+  site_uv: false
+  site_pv: false
+  page_pv: false
+
+social:
+
+comments:
+  use: ""
+  text: true
+  lazyload: true
+  count: false
+  card_post_count: false
+
+sharejs:
+  enable: false
+  sites: ""
+
+addtoany:
+  enable: false
+  item: ""
+
+ptool:
+  enable: true
+  share_mobile: false
+  share_weibo: false
+  share_copyurl: true
+  categories: false
+
+lazyload:
+  enable: true
+  field: site
+  placeholder:
+  blur: true
+
+preloader:
+  enable: false
+  source: 3
+  pace_css_url:
+
+theme_color:
+  enable: true
+  main: "#6272ff"
+  dark_main: "#a996ff"
+  paginator: "#6272ff"
+  button_hover: "#5364ef"
+  text_selection: "#5364ef"
+  meta_theme_color_light: "#f4f6fc"
+  meta_theme_color_dark: "#050816"
+  link_color: "var(--anzhiyu-fontcolor)"
+  meta_color: "var(--anzhiyu-secondtext)"
+  hr_color: "#6757e526"
+  code_foreground: "#fff"
+  code_background: "#6757e5"
+  toc_color: "#6757e5"
+  blockquote_padding_color: "#6757e5"
+  blockquote_background_color: "#6757e50f"
+  scrollbar_color: "#6757e5"
+
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/perry.css">
+  bottom:
+    - <script defer src="/js/research-galaxy.js"></script>
+
+home_top:
+  enable: false
+
+universe:
+  enable: false
+
+diytitle:
+  enable: false
+
+nav_music:
+  enable: false
+
+console:
+  enable: false
+
+centerConsole:
+  enable: false
+
+reward:
+  enable: false
+  QR_code: []
+
+post_head_ai_description:
+  enable: false
+  gptName: ""
+  btnLink: ""
+
+CDN:
+  internal_provider: local
+  third_party_provider: cdnjs
+  version: true
