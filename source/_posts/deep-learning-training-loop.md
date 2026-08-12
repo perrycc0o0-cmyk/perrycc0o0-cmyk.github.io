@@ -6,7 +6,9 @@ tags:
   - 神经网络
   - PyTorch
   - 机器学习基础
-cover: /img/perry-cover.png
+cover: /img/cover-dl-training.jpg
+series: 深度学习基础
+series_order: 1
 description: 从张量、前向传播、损失、反向传播和参数更新理解一个最小训练循环。
 abbrlink: d100ee01
 date: 2026-08-12 14:40:00

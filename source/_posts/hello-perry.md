@@ -5,7 +5,9 @@ categories:
 tags:
   - 文献阅读
   - 研究方法
-cover: /img/latest-posts-reading-desk.png
+cover: /img/cover-paper-reading.jpg
+series: 研究与学习方法
+series_order: 1
 description: 不复述摘要，而是沿着问题、证据和边界整理一篇公开论文。
 abbrlink: 4a598552
 date: 2026-08-12 10:00:00

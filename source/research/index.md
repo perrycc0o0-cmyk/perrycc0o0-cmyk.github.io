@@ -1,61 +1,34 @@
 ---
-title: Topics
+title: Knowledge Map
 date: 2026-08-12 10:00:00
 type: page
 comments: false
 aside: false
 top_img: false
-description: Perry's Galaxy 的公开内容索引：生命科学、计算、AI、论文、方法与生活笔记。
+description: Perry's Galaxy 的知识地图：生物信息学、Linux、深度学习、论文研读与日常思考。
 ---
 
-<div class="topics-page">
+<div class="knowledge-map-page perry-page">
+  <header class="perry-page-hero">
+    <span>KNOWLEDGE CONSTELLATIONS</span>
+    <h1>Knowledge Map</h1>
+    <p>不是把文章堆在一起，而是让每一篇笔记都知道自己在学习路径中的位置。</p>
+  </header>
 
-# Knowledge Constellations
+  <section class="map-intro">
+    <span class="map-core">P</span>
+    <div><small>THE CORE QUESTION</small><h2>生命信息如何被计算、理解与表达？</h2><p>从原始数据出发，经过工具、模型和证据，最后回到可解释的结论与持续生长的想法。</p></div>
+  </section>
 
-<p class="lead">A public map of notes, not a map of private research.</p>
+  <section class="map-paths">
+    <a class="map-path" href="/series/#bioinformatics"><span>01</span><h2>Bioinformatics</h2><p>FASTQ → Quality Control → Quantification → Interpretation</p><b>进入生信路径 ↗</b></a>
+    <a class="map-path" href="/series/#linux"><span>02</span><h2>Linux & Computing</h2><p>Files → Shell → Pipelines → Reproducible Environments</p><b>进入计算路径 ↗</b></a>
+    <a class="map-path" href="/series/#deep-learning"><span>03</span><h2>Deep Learning</h2><p>Tensors → Training → Evaluation → Biological Questions</p><b>进入深度学习路径 ↗</b></a>
+    <a class="map-path" href="/series/#research-practice"><span>04</span><h2>Research Practice</h2><p>Question → Evidence → Notes → Reflection</p><b>进入研究方法路径 ↗</b></a>
+  </section>
 
-这里按照通用主题整理博客内容。它们是学习和写作的入口，不代表当前项目，也不会展示未公开的研究信息。
-
-<section class="topic-field" id="biology">
-
-## Biology
-<p class="field-meta">Life science · Concepts · Reading</p>
-生命科学的基础知识、公开论文阅读与个人理解。
-</section>
-
-<section class="topic-field" id="computation">
-
-## Computation
-<p class="field-meta">Python · R · Linux · Data</p>
-编程、数据分析、自动化与可复现计算的公开经验。
-</section>
-
-<section class="topic-field" id="ai">
-
-## Artificial Intelligence
-<p class="field-meta">Learning · Models · Practice</p>
-对人工智能的学习记录、工具实践与方法思考。
-</section>
-
-<section class="topic-field" id="papers">
-
-## Papers
-<p class="field-meta">Questions · Evidence · Boundaries</p>
-如何阅读一篇论文，辨认问题、证据、结论与边界。
-</section>
-
-<section class="topic-field" id="methods">
-
-## Methods
-<p class="field-meta">Tutorials · Workflow · Reproducibility</p>
-公开、通用、可复用的方法、教程与工作流。
-</section>
-
-<section class="topic-field" id="life">
-
-## Notes & Life
-<p class="field-meta">Reading · Writing · Reflection</p>
-学习记录、科研生活以及关于阅读、写作和成长的思考。
-</section>
-
+  <section class="map-footer-callout">
+    <div><span>NEXT STEP</span><h2>从路径开始，或直接寻找一个工具。</h2></div>
+    <nav><a href="/series/">浏览学习系列</a><a href="/tools/">打开研究工具库</a></nav>
+  </section>
 </div>

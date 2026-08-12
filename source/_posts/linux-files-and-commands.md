@@ -6,7 +6,9 @@ tags:
   - Linux 基础
   - 命令行
   - 文件系统
-cover: /img/perry-cover.png
+cover: /img/cover-linux-files.jpg
+series: Linux for Bioinformatics
+series_order: 1
 description: 从路径、文件操作和文本查看开始，建立 Linux 命令行的基本心智模型。
 abbrlink: 1100aa01
 date: 2026-08-12 15:00:00

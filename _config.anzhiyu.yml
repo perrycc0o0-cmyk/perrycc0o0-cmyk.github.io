@@ -1,7 +1,10 @@
 menu:
   Home: / || anzhiyu-icon-house
   Articles: /archives/ || anzhiyu-icon-book
-  Topics: /research/ || anzhiyu-icon-compass
+  Knowledge Map: /research/ || anzhiyu-icon-compass
+  Series: /series/ || anzhiyu-icon-list
+  Toolbox: /tools/ || anzhiyu-icon-toolbox
+  Statistics: /stats/ || anzhiyu-icon-chart-line
   Archive: /archives/ || anzhiyu-icon-box-archive
   Categories: /categories/ || anzhiyu-icon-folder-open
   Tags: /tags/ || anzhiyu-icon-tags
@@ -76,7 +79,7 @@ footer:
   owner:
     enable: true
     since: 2026
-  custom_text: <div class="perry-footer-brand">PERRY'S GALAXY<small>Biology · Computation · Curiosity</small></div><div class="perry-footer-links"><a href="/atom.xml">RSS</a><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a><a href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" target="_blank" rel="noopener">AnZhiYu</a></div>
+  custom_text: <div class="perry-footer-brand">PERRY'S GALAXY<small>Biology · Computation · Curiosity</small></div><div class="perry-footer-links"><a href="/atom.xml">RSS</a><a href="/series/">学习系列</a><a href="/tools/">工具库</a></div>
   runtime:
     enable: false
   footerBar:
@@ -219,6 +222,7 @@ inject:
     - <link rel="stylesheet" href="/css/perry.css">
   bottom:
     - <script defer src="/js/research-galaxy.js"></script>
+    - <script defer src="/js/perry-experience.js"></script>
 
 home_top:
   enable: false

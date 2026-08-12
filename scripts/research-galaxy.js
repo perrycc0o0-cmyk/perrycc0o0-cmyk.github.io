@@ -35,6 +35,96 @@ const topicsHtml = topics.map(([id, title, copy], index) => `
     <b aria-hidden="true">↗</b>
   </a>`).join('');
 
+const escapeHtml = value => String(value || '')
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#39;');
+
+const normalizeCollectionName = value => {
+  if (!value) return '';
+  if (Array.isArray(value)) return normalizeCollectionName(value[0]);
+  return value.name || String(value);
+};
+
+const stripContent = value => String(value || '')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/[`*_>#\[\](){}|~-]/g, ' ')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+const estimateWords = value => {
+  const text = stripContent(value);
+  const han = (text.match(/[\u3400-\u9fff]/g) || []).length;
+  const latin = (text.replace(/[\u3400-\u9fff]/g, ' ').match(/[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)*/g) || []).length;
+  return han + latin;
+};
+
+function getPosts() {
+  const collection = hexo.locals.get('posts');
+  return collection ? collection.toArray().filter(post => post.published !== false) : [];
+}
+
+function renderSeriesNavigator(page) {
+  const series = normalizeCollectionName(page && page.series);
+  if (!series) return '';
+  const posts = getPosts()
+    .filter(post => normalizeCollectionName(post.series) === series)
+    .sort((a, b) => Number(a.series_order || 999) - Number(b.series_order || 999));
+  if (!posts.length) return '';
+  const currentIndex = posts.findIndex(post => post.path === page.path || post._id === page._id);
+  const items = posts.map((post, index) => {
+    const current = index === currentIndex;
+    return `<li${current ? ' class="is-current"' : ''}><a href="/${post.path}"><span>${String(index + 1).padStart(2, '0')}</span>${escapeHtml(post.title)}</a></li>`;
+  }).join('');
+  const previous = currentIndex > 0 ? posts[currentIndex - 1] : null;
+  const next = currentIndex >= 0 && currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+  return `<nav class="post-series" aria-label="同系列文章">
+    <header><div><span>LEARNING SERIES</span><h3>${escapeHtml(series)}</h3></div><b>${Math.max(currentIndex + 1, 1)} / ${posts.length}</b></header>
+    <ol>${items}</ol>
+    <div class="post-series-switch">
+      ${previous ? `<a href="/${previous.path}"><span>上一篇</span>${escapeHtml(previous.title)}</a>` : '<i></i>'}
+      ${next ? `<a href="/${next.path}"><span>下一篇</span>${escapeHtml(next.title)}</a>` : '<i></i>'}
+    </div>
+  </nav>`;
+}
+
+function renderStats() {
+  const posts = getPosts();
+  const categoryCounts = new Map();
+  const seriesCounts = new Map();
+  const tagNames = new Set();
+  let words = 0;
+  posts.forEach(post => {
+    words += estimateWords(post.raw || post.content);
+    const categories = post.categories && post.categories.toArray ? post.categories.toArray() : [];
+    const tags = post.tags && post.tags.toArray ? post.tags.toArray() : [];
+    categories.forEach(category => categoryCounts.set(category.name, (categoryCounts.get(category.name) || 0) + 1));
+    tags.forEach(tag => tagNames.add(tag.name));
+    const series = normalizeCollectionName(post.series);
+    if (series) seriesCounts.set(series, (seriesCounts.get(series) || 0) + 1);
+  });
+  const maxCategory = Math.max(1, ...categoryCounts.values());
+  const bars = Array.from(categoryCounts.entries()).sort((a, b) => b[1] - a[1]).map(([name, count]) => `
+    <div class="stats-bar"><div><span>${escapeHtml(name)}</span><b>${count} 篇</b></div><i><em style="width:${Math.max(12, Math.round(count / maxCategory * 100))}%"></em></i></div>`).join('');
+  const series = Array.from(seriesCounts.entries()).map(([name, count]) => `
+    <a class="stats-series-item" href="/series/"><span>${escapeHtml(name)}</span><b>${count} chapters</b></a>`).join('');
+  const recent = posts.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5).map(post => `
+    <a class="stats-recent-item" href="/${post.path}"><time>${post.date.format('YYYY.MM.DD')}</time><span>${escapeHtml(post.title)}</span></a>`).join('');
+  return `<section class="stats-overview">
+      <article><strong>${posts.length}</strong><span>公开文章</span></article>
+      <article><strong>${categoryCounts.size}</strong><span>知识主题</span></article>
+      <article><strong>${tagNames.size}</strong><span>关键词</span></article>
+      <article><strong>${words.toLocaleString('zh-CN')}</strong><span>约计字词</span></article>
+    </section>
+    <section class="stats-grid">
+      <article class="stats-panel"><span class="panel-kicker">DISTRIBUTION</span><h2>内容分布</h2>${bars}</article>
+      <article class="stats-panel"><span class="panel-kicker">SERIES</span><h2>学习系列</h2>${series}</article>
+      <article class="stats-panel stats-recent"><span class="panel-kicker">RECENT SIGNALS</span><h2>最近更新</h2>${recent}</article>
+    </section>`;
+}
+
 const homepageIntro = `
 <div id="research-galaxy-home" class="galaxy-home">
   <section class="galaxy-hero" aria-labelledby="galaxy-title">
@@ -97,6 +187,15 @@ hexo.extend.filter.register('after_render:html', function (html, data) {
     .replace(/<script src="https:\/\/cdn\.cbd\.int\/qrcodejs@[^>]*><\/script>/g, '')
     .replace(/<meta property="og:image" content="[^"]*">/i, `<meta property="og:image" content="${socialImage}">`)
     .replace(/<meta name="twitter:image" content="[^"]*">/i, `<meta name="twitter:image" content="${socialImage}">`);
+
+  if (data.path === 'stats/index.html') {
+    html = html.replace('<!-- PERRY_STATS -->', renderStats());
+  }
+
+  if (data.page && data.page.layout === 'post') {
+    const navigator = renderSeriesNavigator(data.page);
+    if (navigator && html.includes('</article>')) html = html.replace('</article>', `${navigator}</article>`);
+  }
 
   if (data.path !== 'index.html') return html;
 
