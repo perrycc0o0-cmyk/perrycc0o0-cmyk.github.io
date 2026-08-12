@@ -173,7 +173,7 @@ const homepageOutro = `
 <section class="galaxy-about rg-reveal">
   <div class="galaxy-about-mark" aria-hidden="true"><span>P</span></div>
   <div><span>04 / ABOUT PERRY</span><h2>Somewhere between biology and computation.</h2></div>
-  <p>一个喜欢生命科学、计算、人工智能与探索未知的研究者。这里展示学习、技术与思考，不展示未公开的研究项目。</p>
+  <p>一个喜欢生命科学、计算、人工智能与探索未知的研究者。这里记录学习、技术与思考。</p>
   <a href="/about/">About Perry <b>↗</b></a>
 </section>`;
 
