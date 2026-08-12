@@ -21,18 +21,11 @@
   function showPoem() {
     if (document.querySelector('.poem-portal')) return;
     var poem = poems[Math.floor(Math.random() * poems.length)];
-    var portal = document.createElement('div');
+    var portal = document.createElement('section');
     portal.className = 'poem-portal';
-    portal.innerHTML = '<div class="poem-stars"></div><div class="poem-card"><span>PERRY\'S GALAXY · ENTRY</span><blockquote>' + poem[0] + '</blockquote><cite>' + poem[1] + '</cite><button type="button" aria-label="进入网站">进入星系 <b>→</b></button></div>';
-    document.body.appendChild(portal);
-    var close = function () {
-      portal.classList.add('is-leaving');
-      window.setTimeout(function () { portal.remove(); }, 720);
-    };
-    portal.querySelector('button').addEventListener('click', close);
-    portal.addEventListener('click', function (event) { if (event.target === portal) close(); });
-    document.addEventListener('keydown', function onKey(event) { if (event.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); } });
-    window.setTimeout(close, 4200);
+    portal.setAttribute('aria-label', '今日诗句');
+    portal.innerHTML = '<div class="poem-stars"></div><div class="poem-card"><span>PERRY\'S GALAXY · ENTRY</span><blockquote>' + poem[0] + '</blockquote><cite>' + poem[1] + '</cite></div><div class="poem-scroll-cue" aria-hidden="true"><i></i><span>SCROLL TO EXPLORE</span></div>';
+    document.body.insertBefore(portal, document.body.firstChild);
   }
 
   function createPet() {
