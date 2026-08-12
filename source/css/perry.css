@@ -97,6 +97,20 @@ body {
 .research-galaxy-index #content-inner { position: relative; z-index: 2; max-width: 1240px; padding-top: 8px; }
 .research-galaxy-index #aside-content, .research-galaxy-index #categoryBar { display: none; }
 .research-galaxy-index #recent-posts { width: 100%; }
+[data-theme='light'] .research-galaxy-index { background: #f4f6fc; }
+[data-theme='light'] .research-galaxy-index #blog-container { background: #f4f6fc; }
+[data-theme='light'] .research-galaxy-index .galaxy-home,
+[data-theme='light'] .research-galaxy-index .galaxy-section,
+[data-theme='light'] .research-galaxy-index .galaxy-about { color: #17203b; }
+[data-theme='light'] .research-galaxy-index .galaxy-section-head h2,
+[data-theme='light'] .research-galaxy-index .explore-card,
+[data-theme='light'] .research-galaxy-index .topic-row,
+[data-theme='light'] .research-galaxy-index .galaxy-about h2 { color: #17203b; }
+[data-theme='light'] .research-galaxy-index .explore-card,
+[data-theme='light'] .research-galaxy-index #recent-posts > .recent-post-item { background: rgba(255,255,255,.78); border-color: rgba(74,89,151,.15); }
+[data-theme='light'] .research-galaxy-index #recent-posts .article-title { color: #18213d; }
+[data-theme='light'] .research-galaxy-index #recent-posts .content,
+[data-theme='light'] .research-galaxy-index #recent-posts .article-meta-wrap { color: #65708f; }
 
 .galaxy-home { color: var(--perry-white); }
 .galaxy-hero {
@@ -216,8 +230,8 @@ body {
 .research-galaxy-index #recent-posts > .recent-post-item { min-height: 260px; border: 1px solid var(--perry-line); background: rgba(10, 15, 38, .72); box-shadow: none; transition: var(--perry-ease); }
 .research-galaxy-index #recent-posts > .recent-post-item:hover { transform: translateY(-3px); border-color: rgba(132, 148, 255, .42); box-shadow: 0 14px 36px rgba(0, 0, 0, .18), 0 0 24px rgba(76, 88, 205, .08); }
 .research-galaxy-index #recent-posts .recent-post-item .post_cover { background: #070b1c; }
-.research-galaxy-index #recent-posts .recent-post-item .post_cover img { opacity: .56; filter: saturate(.38) brightness(.68) contrast(.92); transform: scale(1.01); transition: opacity .45s ease, filter .45s ease, transform .65s ease; }
-.research-galaxy-index #recent-posts .recent-post-item:hover .post_cover img { opacity: .7; filter: saturate(.52) brightness(.78) contrast(.96); transform: scale(1.025); }
+.research-galaxy-index #recent-posts .recent-post-item .post_cover img { opacity: .76; filter: saturate(.72) brightness(.78) contrast(.94); transform: scale(1.01); transition: opacity .45s ease, filter .45s ease, transform .65s ease; }
+.research-galaxy-index #recent-posts .recent-post-item:hover .post_cover img { opacity: .86; filter: saturate(.85) brightness(.87) contrast(.97); transform: scale(1.025); }
 .research-galaxy-index #recent-posts .article-title { color: #edf0ff; }
 .research-galaxy-index #recent-posts .content, .research-galaxy-index #recent-posts .article-meta-wrap { color: #8994b6; }
 .research-galaxy-index #pagination { margin-bottom: 35px; }
@@ -362,15 +376,27 @@ body {
 .post-series-switch span { display: block; margin-bottom: 4px; color: #747fc1; font: 8px monospace; }
 
 /* A poem is the doorway; the pet is a quiet companion. */
-.poem-portal { position: relative; z-index: 1; display: grid; place-items: center; width: 100%; min-height: 100svh; overflow: hidden; color: #f6f7ff; background: radial-gradient(circle at 50% 44%, #151d4a 0, #080c21 38%, #03050e 100%); }
-.poem-stars { position: absolute; inset: 0; opacity: .65; background-image: radial-gradient(#fff 0.7px, transparent .8px), radial-gradient(#87e5e8 0.7px, transparent .8px); background-position: 0 0, 38px 51px; background-size: 83px 83px, 127px 127px; animation: starDrift 18s linear infinite alternate; }
-.poem-card { position: relative; width: min(900px, calc(100% - 42px)); padding: 50px 25px; text-align: center; }
+.poem-portal { --poem-progress: 0; position: relative; z-index: 1; display: grid; place-items: center; width: 100%; min-height: 100svh; overflow: hidden; color: #f6f7ff; background: radial-gradient(circle at 50% 44%, #151d4a 0, #080c21 38%, #03050e 100%); }
+.poem-portal::after { content: ''; position: absolute; inset: auto 0 0; height: 26vh; background: linear-gradient(transparent, var(--perry-space)); pointer-events: none; }
+.poem-stars { position: absolute; inset: -5%; opacity: calc(.65 - var(--poem-progress) * .44); background-image: radial-gradient(#fff 0.7px, transparent .8px), radial-gradient(#87e5e8 0.7px, transparent .8px); background-position: 0 0, 38px 51px; background-size: 83px 83px, 127px 127px; animation: starDrift 18s linear infinite alternate; transform: translateY(calc(var(--poem-progress) * 70px)) scale(calc(1 + var(--poem-progress) * .05)); }
+.poem-card { position: relative; z-index: 1; width: min(900px, calc(100% - 42px)); padding: 50px 25px; text-align: center; opacity: calc(1 - var(--poem-progress) * 1.12); transform: translateY(calc(var(--poem-progress) * -68px)) scale(calc(1 - var(--poem-progress) * .045)); will-change: opacity, transform; }
 .poem-card > span { color: #7887d4; font: 9px monospace; letter-spacing: .2em; }
 .poem-card blockquote { margin: 45px auto 22px; border: 0; color: #f7f8ff; background: transparent; font-family: "STKaiti", "KaiTi", "FangSong", serif; font-size: clamp(31px, 5.2vw, 64px); font-weight: 400; line-height: 1.5; letter-spacing: .06em; }
 .poem-card cite { display: block; color: #9ba6cf; font: 12px var(--perry-body); font-style: normal; }
 .poem-scroll-cue { position: absolute; bottom: 28px; left: 50%; display: flex; flex-direction: column; align-items: center; gap: 10px; color: #727fae; font: 8px monospace; letter-spacing: .18em; transform: translateX(-50%); }
 .poem-scroll-cue i { position: relative; display: block; width: 1px; height: 34px; overflow: hidden; background: rgba(128,142,211,.2); }
 .poem-scroll-cue i::after { content: ''; position: absolute; top: -16px; left: 0; width: 1px; height: 16px; background: #7f91e8; animation: poemScroll 1.8s ease-in-out infinite; }
+.perry-theme-switch { position: fixed; z-index: 10001; top: 18px; right: 22px; display: flex; align-items: center; gap: 7px; padding: 5px 8px; border: 1px solid rgba(118,132,197,.24); border-radius: 30px; color: #aeb7dc; background: rgba(7,11,29,.58); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.perry-theme-switch button { min-width: 25px; height: 24px; padding: 0; border: 0; border-radius: 15px; color: inherit; background: transparent; font: 11px/24px "PingFang SC", "Microsoft YaHei", sans-serif; cursor: pointer; opacity: .5; }
+.perry-theme-switch button[aria-pressed='true'] { color: #fff; background: rgba(119,133,211,.25); opacity: 1; }
+.perry-theme-switch i { width: 1px; height: 12px; background: rgba(142,153,207,.2); }
+[data-theme='light'] .perry-theme-switch { color: #536080; background: rgba(255,255,255,.75); border-color: rgba(65,76,125,.16); }
+[data-theme='light'] .perry-theme-switch button[aria-pressed='true'] { color: #1d2743; background: rgba(92,108,184,.13); }
+[data-theme='light'] .poem-portal { color: #1e2742; background: radial-gradient(circle at 50% 42%, #f1edf8 0, #edf1f8 43%, #dde4f1 100%); }
+[data-theme='light'] .poem-portal::after { background: linear-gradient(transparent, #f4f6fc); }
+[data-theme='light'] .poem-stars { opacity: calc(.28 - var(--poem-progress) * .18); filter: invert(.7); }
+[data-theme='light'] .poem-card blockquote { color: #202942; }
+[data-theme='light'] .poem-card cite { color: #68728e; }
 #perry-pet { position: fixed; left: 22px; bottom: 22px; z-index: 998; width: 62px; height: 72px; border: 0; outline: 0; color: inherit; background: transparent; cursor: pointer; filter: drop-shadow(0 8px 13px rgba(16,24,70,.25)); }
 .pet-antenna { position: absolute; left: 30px; top: 3px; width: 2px; height: 15px; background: #6676d9; }
 .pet-antenna::after { content: ''; position: absolute; left: -3px; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: #62e0e1; box-shadow: 0 0 8px #62e0e1; }

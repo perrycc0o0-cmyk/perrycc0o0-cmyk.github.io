@@ -6,7 +6,7 @@ tags:
   - 质量控制
   - 测序数据
   - 可复现分析
-cover: /img/cover-bio-qc.jpg
+cover: /img/cartoon-bio-qc.jpg
 series: 生物信息学基础
 series_order: 2
 description: 从单个指标、样本间比较和下游影响三个层次阅读测序数据质控报告。

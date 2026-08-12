@@ -6,7 +6,7 @@ tags:
   - 学习记录
   - 写作
   - 思考
-cover: /img/cover-learning-log.jpg
+cover: /img/cartoon-learning-log.jpg
 series: 研究与学习方法
 series_order: 3
 description: 给还没有定型的知识和想法一个可以继续更新的结构。

@@ -6,7 +6,7 @@ tags:
   - 可复现分析
   - 数据分析
   - 工作流
-cover: /img/cover-reproducible-workflow.jpg
+cover: /img/cartoon-reproducible-workflow.jpg
 series: 研究与学习方法
 series_order: 2
 description: 用简单、稳定的目录和记录方式，让一次公开练习可以被未来的自己重新运行。

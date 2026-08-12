@@ -6,7 +6,7 @@ tags:
   - Shell
   - 管道
   - 进程管理
-cover: /img/cover-linux-pipelines.jpg
+cover: /img/cartoon-linux-pipelines.jpg
 series: Linux for Bioinformatics
 series_order: 2
 description: 理解标准输入输出、管道、进程和环境变量，让多个小命令组成可靠工作流。

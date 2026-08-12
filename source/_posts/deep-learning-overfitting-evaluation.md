@@ -6,7 +6,7 @@ tags:
   - 过拟合
   - 模型评估
   - 数据划分
-cover: /img/cover-dl-evaluation.jpg
+cover: /img/cartoon-dl-evaluation.jpg
 series: 深度学习基础
 series_order: 2
 description: 从训练集、验证集和测试集的职责出发，理解过拟合、数据泄漏与可靠评估。

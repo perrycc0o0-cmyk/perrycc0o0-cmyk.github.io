@@ -20,12 +20,63 @@
 
   function showPoem() {
     if (document.querySelector('.poem-portal')) return;
+    var home = document.getElementById('research-galaxy-home');
+    if (!home) return;
     var poem = poems[Math.floor(Math.random() * poems.length)];
     var portal = document.createElement('section');
     portal.className = 'poem-portal';
     portal.setAttribute('aria-label', '今日诗句');
     portal.innerHTML = '<div class="poem-stars"></div><div class="poem-card"><span>PERRY\'S GALAXY · ENTRY</span><blockquote>' + poem[0] + '</blockquote><cite>' + poem[1] + '</cite></div><div class="poem-scroll-cue" aria-hidden="true"><i></i><span>SCROLL TO EXPLORE</span></div>';
-    document.body.insertBefore(portal, document.body.firstChild);
+    home.parentNode.insertBefore(portal, home);
+    updatePoemTransition();
+  }
+
+  function updatePoemTransition() {
+    var portal = document.querySelector('.poem-portal');
+    if (!portal) return;
+    var rect = portal.getBoundingClientRect();
+    var distance = Math.max(window.innerHeight * 0.72, 1);
+    var progress = Math.max(0, Math.min(1, -rect.top / distance));
+    portal.style.setProperty('--poem-progress', progress.toFixed(3));
+  }
+
+  function initPoemTransition() {
+    if (window.perryPoemScrollReady) return;
+    window.perryPoemScrollReady = true;
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        updatePoemTransition();
+        ticking = false;
+      });
+    }, { passive: true });
+    window.addEventListener('resize', updatePoemTransition, { passive: true });
+  }
+
+  function applyTheme(mode) {
+    if (mode === 'dark' && window.activateDarkMode) window.activateDarkMode();
+    else if (mode === 'light' && window.activateLightMode) window.activateLightMode();
+    else document.documentElement.setAttribute('data-theme', mode);
+    if (window.saveToLocal) window.saveToLocal.set('theme', mode, 2);
+    document.querySelectorAll('.perry-theme-switch button').forEach(function (button) {
+      button.setAttribute('aria-pressed', String(button.dataset.theme === mode));
+    });
+  }
+
+  function createThemeSwitch() {
+    if (document.querySelector('.perry-theme-switch')) return;
+    var themeSwitch = document.createElement('div');
+    themeSwitch.className = 'perry-theme-switch';
+    themeSwitch.setAttribute('aria-label', '选择网站主题');
+    themeSwitch.innerHTML = '<button type="button" data-theme="dark">黑</button><i></i><button type="button" data-theme="light">白</button>';
+    document.body.appendChild(themeSwitch);
+    themeSwitch.addEventListener('click', function (event) {
+      var button = event.target.closest('button[data-theme]');
+      if (button) applyTheme(button.dataset.theme);
+    });
+    applyTheme(document.documentElement.getAttribute('data-theme') || 'dark');
   }
 
   function createPet() {
@@ -66,10 +117,13 @@
   }
 
   function boot() {
+    showPoem();
+    initPoemTransition();
+    createThemeSwitch();
     createPet();
     initToolSearch();
   }
 
-  document.addEventListener('DOMContentLoaded', function () { showPoem(); boot(); });
+  document.addEventListener('DOMContentLoaded', boot);
   document.addEventListener('pjax:complete', boot);
 })();

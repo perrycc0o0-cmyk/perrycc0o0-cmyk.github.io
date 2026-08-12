@@ -6,7 +6,7 @@ tags:
   - RNA-seq
   - 数据分析
   - 工作流
-cover: /img/cover-bio-fastq.jpg
+cover: /img/cartoon-bio-fastq.jpg
 series: 生物信息学基础
 series_order: 1
 description: 用一张概念地图理解测序数据如何经过质控、比对或定量，最终成为可以分析的表达矩阵。

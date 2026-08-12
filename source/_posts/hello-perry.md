@@ -5,7 +5,7 @@ categories:
 tags:
   - 文献阅读
   - 研究方法
-cover: /img/cover-paper-reading.jpg
+cover: /img/cartoon-paper-reading.jpg
 series: 研究与学习方法
 series_order: 1
 description: 不复述摘要，而是沿着问题、证据和边界整理一篇公开论文。
